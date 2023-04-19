@@ -12,7 +12,6 @@ function AccountEdit(props) {
 
     const emptyAccount = {
         description: '',
-        priority: '1',
         userid: ''
     };
 
@@ -53,8 +52,8 @@ function AccountEdit(props) {
                            onChange={handleChange} autoComplete="login"/>
                 </FormGroup>
                 <FormGroup>
-                    <Label className={classes.label} for="password">Пароль:</Label><br/>
-                    <Input className={classes.input} type="text" name="password" id="password" autoComplete="password"
+                    <Label className={classes.label} for="passwordEncrypted">Пароль:</Label><br/>
+                    <Input className={classes.input} type="password" name="passwordEncrypted" id="passwordEncrypted" autoComplete="passwordEncrypted"
                            onChange={handleChange} required>
                         {defaultOption}
                         {props.users.map(e => {

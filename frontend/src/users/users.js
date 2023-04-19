@@ -24,18 +24,16 @@ function Users(props) {
         changeSort(event, sorting, setSorting);
     }
 
-    // Отсортированный список
-    const usersSorted = props.users.sort((a, b) => sortLogic(a, b, sorting));
-
     // Формирование строк таблицы сотрудников
-    const emplList = usersSorted.map(user => {
+    const emplList = props.users.map(user => {
+        console.log('dddd');
+        console.log(user);
         return <tr className={classes.t_row} key={user.id}>
             <td width="5%">{user.id} </td>
-
             <td width="15%">{user.login}</td>
             <td width="15%">{user.name}</td>
             <td width="15%">{user.surname}</td>
-            <td width="15%">{user.is_admin}</td>
+            <td width="15%">{user.is_admin ? 'Да' : 'Нет'}</td>
             <td width="15%">
                 <ButtonGroup>
                     <Button className={classes.button_com} onClick={() =>
@@ -49,7 +47,7 @@ function Users(props) {
         <div>
             <Container className={classes.background_color}>
                 <Button className={classes.button_com} onClick={() =>
-                    window.location.href = "/users/new"}>Добавить пользоователя</Button>
+                    window.location.href = "/users/new"}>Добавить пользователя</Button>
                 <Table className={classes.table} width={"100%"}>
                     <thead className={classes.t_head}>
                     <tr>

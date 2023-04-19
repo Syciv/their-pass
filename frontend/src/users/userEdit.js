@@ -33,15 +33,12 @@ function UserEdit(props) {
         }
     }, []);
 
-
     // Изменение инпутов
     const handleChange = event => {
         change(event, setUser, user)
     }
 
     const title = <h2 className={classes.label}>{user.id ? 'Редактировать пользователя' : 'Добавить пользователя'}</h2>;
-
-
 
     const accountAccessedList = accessedAccounts.map(account => {
         return <tr className={classes.t_row} key={account.id}>
@@ -100,11 +97,16 @@ function UserEdit(props) {
                 {props.match.params.id !== 'new' && ' ' + user.login + ' (' +user.name + ' ' + user.surname + ')'}</Label><br/>
 
             {props.match.params.id === 'new' &&
-                <Form onSubmit={(event) => log()}>
+                <Form onSubmit={(event) => submit(event, props.editUser, props.addUser, user, 2)}>
                     <FormGroup>
                         <Label className={classes.label} for="login">Логин:</Label><br/>
                         <Input className={classes.input} type="text" name="login" id="login" value={user.login || ''}
                                onChange={handleChange} autoComplete="login" required/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label className={classes.label} for="password">Логин:</Label><br/>
+                        <Input className={classes.input} type="password" name="passwordHash" id="passwordHash" value={user.passwordHash || ''}
+                               onChange={handleChange} autoComplete="passwordHash" required/>
                     </FormGroup>
                     <FormGroup>
                         <Label className={classes.label} for="name">Имя:</Label><br/>
@@ -116,6 +118,13 @@ function UserEdit(props) {
                         <Input className={classes.input} type="text" name="surname" id="surname" value={user.surname}
                                onChange={handleChange} autoComplete="surname" required>
                         </Input>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label className={classes.label} align="left" for="isAdmin">Администратор</Label><br/>
+                        <Input type="radio" name="isAdmin" id="isAdmin1" onChange={handleChange} value="true"/>
+                        <Label className={classes.label} align="left" for="isAdmin1">Да</Label><br/>
+                        <Input type="radio" name="isAdmin" id="isAdmin2" onChange={handleChange} value="false"/>
+                        <Label className={classes.label} align="left" for="isAdmin2">Нет</Label><br/>
                     </FormGroup>
                     <FormGroup>
                         <Button className={classes.button_com} type="submit">Сохранить</Button>{' '}

@@ -30,8 +30,8 @@ public class UserController {
         userService.create(user);
     }
 
-    @DeleteMapping
-    public void delete(@RequestBody Long id){
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable Long id){
         userService.delete(id);
     }
 

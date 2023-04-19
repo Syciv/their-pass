@@ -63,8 +63,8 @@ public class AccountController {
         accountService.create(account);
     }
 
-    @DeleteMapping
-    public void delete(@RequestBody Long id) {
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable Long id) {
         accountService.delete(id);
     }
 
