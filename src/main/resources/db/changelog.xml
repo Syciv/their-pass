@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd">
+
+
+    <changeSet id="study/1.0/17-02-2023/1" author="ivan_sych" logicalFilePath="set-1.xml">
+        <sql>
+            <![CDATA[
+            CREATE SCHEMA IF NOT EXISTS tp;
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="tp/1.0/11-04-2023/1" author="ivan_sych" logicalFilePath="set-1.xml">
+        <sql>
+            <![CDATA[
+            CREATE TABLE tp.user
+            (
+                id                   bigserial PRIMARY KEY,
+                login                text,
+                password_hash        text,
+                name                 text,
+                surname              text,
+                datetime_of_creation timestamp,
+                is_admin             boolean
+            );
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="tp/1.0/11-04-2023/2" author="ivan_sych" logicalFilePath="set-1.xml">
+        <sql>
+            <![CDATA[
+            CREATE TABLE tp.object
+            (
+                id                   bigserial PRIMARY KEY,
+                login                text,
+                password_encrypted   text,
+                description          text
+            );
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="tp/1.0/11-04-2023/3" author="ivan_sych" logicalFilePath="set-1.xml">
+        <sql>
+            <![CDATA[
+            CREATE TABLE tp.user_object_access
+            (
+                id                   bigserial PRIMARY KEY,
+                user_id              bigint,
+                object_id            bigint
+            );
+            ]]>
+        </sql>
+    </changeSet>
+
+    <changeSet id="tp/1.0/11-04-2023/4" author="ivan_sych" logicalFilePath="set-1.xml">
+        <sql>
+            <![CDATA[
+            ALTER TABLE tp.object RENAME TO account;
+            ]]>
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>
